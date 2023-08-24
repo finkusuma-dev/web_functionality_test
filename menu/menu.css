@@ -1,0 +1,83 @@
+/* Reset some default styles */
+* {
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  transform: translateX(-200px);
+  /* overflow-x: hidden; */
+  transition: 0.3s;
+  position: fixed;
+  z-index: 1;
+}
+
+.sidebar__bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #00000033;
+  /* width: 100vw;
+  height: 100vh; */
+}
+
+.hidden {
+  display: none;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 20px;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+.sidebar--open {
+  transform: translateX(0px);
+  /* width: 200px; */
+  /* height: 100%; */
+}
+
+/* Media query to display sidebar when the screen is smaller */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    margin-top: 50px;
+  }
+}

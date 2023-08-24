@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animate Using ScrollTimeline</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 0 20px 20px;
+      margin: 0;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 0 0 5px;
+      background-color: yellow;
+    }
+
+    .scroll-tracker {
+      height: 5px;
+      width: 100%;
+      background-color: blue;
+      transform-origin: left;
+    }
+
+    .text-log {}
+
+    /* .box {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    } */
+
+    .box-1 {
+      width: 100px;
+      height: 600px;
+      background-color: green;
+    }
+
+    .box-2 {
+      width: 100px;
+      height: 300px;
+      background-color: green;
+    }
+
+    .box-animated {
+      width: 100px;
+      height: 100px;
+      background-color: hsl(0, 100%, 90%);
+      transition: 0.5s;
+    }
+
+    .change-width {
+      width: 200px;
+    }
+  </style>
+  <script src="./animate3.js" type="module" defer></script>
+</head>
+
+<body>
+  <!-- Using ScrollTimeline -->
+  <div class="fixed">
+    <div id="scroll-tracker" class="scroll-tracker"></div>
+    <div class="">Using Scroll timeline</div>
+    <!-- <div id="text-log">...</div> -->
+  </div>
+  <div class="box-1"></div>
+
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+
+  <script>
+    const textLog = document.getElementById('text-log');
+    const animatedBox = document.getElementById('box-animated');
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animate</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      padding: 5px;
+      background-color: yellow;
+
+    }
+
+    .text-log {}
+
+    /* .box {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    } */
+
+    .box-1 {
+      width: 100px;
+      height: 600px;
+      background-color: green;
+    }
+
+    .box-2 {
+      width: 100px;
+      height: 300px;
+      background-color: green;
+    }
+
+    .box-animated {
+      width: 100px;
+      height: 100px;
+      background-color: hsl(0, 100%, 90%);
+      transition: 0.5s;
+    }
+
+    .change-width {
+      width: 200px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Manual calculation of element top offset from screen. Then add/remove style based on that. -->
+  <div class="fixed">
+    <div class="">Manual calculation of element top offset from screen. Then add/remove style based on that.</div>
+    <div id="text-log">...</div>
+  </div>
+  <div class="box-1"></div>
+  <!-- <div class="overflow-container"> -->
+
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <!-- </div> -->
+
+  <script>
+    const textLog = document.getElementById('text-log');
+    const animatedBox = document.getElementById('box-animated');
+
+    textLog.innerHTML = "Hello";
+
+    window.addEventListener('scroll', () => {
+      // let pageYOffset = window.pageYOffset;
+      // console.log('pageYOffset', pageYOffset);
+
+      ///
+      const scrollPercent =
+        (window.pageYOffset / (document.body.offsetHeight - window.innerHeight)).toFixed(2);
+
+      /// animating element id ( box-animated)
+      const animatedBoxTop = animatedBox.offsetTop - window.pageYOffset;
+      textLog.innerHTML =
+        `scroll%: ${scrollPercent} \n 
+        animatedBox box top: ${(animatedBoxTop).toFixed(2)}`;
+
+      /// changing width will auto animate
+      if (animatedBoxTop < 400) {
+        // console.log('set width');
+        animatedBox.style.width = '100%';
+      } else {
+        animatedBox.style.width = '100px';
+      }
+
+      /// animating element class (box-animated)
+      // [...document.getElementsByClassName('box-animated')].forEach((el) => {
+      //   console.log('animated box', el);
+      //   const elTop = el.offsetTop - window.pageYOffset;
+      //   // textLog.innerHTML =
+      //   //   `scroll%: ${scrollPercent} \n 
+      //   //   animatedBox box top: ${(elTop).toFixed(2)}`;
+
+      //   /// changing width will auto animate
+      //   if (elTop < 400) {
+      //     // console.log('set width');
+      //     el.style.width = '100%';
+      //   } else {
+      //     el.style.width = '100px';
+      //   }
+      // });
+
+    }, false);
+
+  </script>
+</body>
+
+</html>

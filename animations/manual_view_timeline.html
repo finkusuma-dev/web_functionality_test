@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animate</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      /* padding: 20px; */
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      padding: 5px;
+      background-color: #ffff0033;
+
+    }
+
+    .text-log {}
+
+    /* .box {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    } */
+
+    .box-1 {
+      width: 100px;
+      height: 750px;
+      background-color: green;
+    }
+
+    .box-2 {
+      width: 100px;
+      height: 300px;
+      background-color: green;
+    }
+
+    .box-animated {
+      width: 100px;
+      height: 100px;
+      background-color: hsl(0, 100%, 90%);
+
+    }
+
+    .change-width {
+      width: 200px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Manual calculation of element top offset from screen. Then add/remove style based on that. -->
+  <div class="fixed">
+    <div class="">Manual calculation of element top offset from screen. Then add/remove style based on that.</div>
+    <div id="text-log">...</div>
+  </div>
+  <div class="box-1"></div>
+  <!-- <div class="overflow-container"> -->
+
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-1"></div>
+  <div class="box-1"></div>
+  <!-- </div> -->
+
+  <script>
+    const textLog = document.getElementById('text-log');
+    const animatedBox = document.getElementById('box-animated');
+
+    // textLog.innerHTML = "Hello";
+
+    window.addEventListener('scroll', () => {
+
+      // const scrollPercent =
+      //   (window.pageYOffset / (document.body.offsetHeight - window.innerHeight)).toFixed(2);
+
+      // animating element id ( box-animated)
+      // const animatedBoxTop = animatedBox.offsetTop - window.pageYOffset < 0 ? 0 : animatedBox.offsetTop - window.pageYOffset;
+      // // const start = window.innerHeight;
+      // // const stop = 0;
+
+      // const animatedWidth = ((window.innerHeight - animatedBoxTop) / window.innerHeight);
+
+      // textLog.innerHTML =
+      //   // `scroll%: ${scrollPercent} \n 
+      //   `animatedBox animatedWidth: ${(animatedWidth).toFixed(2)}`;
+      // animatedBox.style.width = animatedWidth * 100 + '%';
+
+      document.querySelectorAll('.box-animated').forEach(box => {
+        /// animating element id ( box-animated)
+        const BoxTop = box.offsetTop - window.pageYOffset < 0 ? 0 : box.offsetTop - window.pageYOffset;
+        // const start = window.innerHeight;
+        // const stop = 0;
+
+        const animatedWidth = ((window.innerHeight - BoxTop) / window.innerHeight);
+
+        // textLog.innerHTML =
+        //   `scroll%: ${scrollPercent} \n 
+        //   box animatedWidth: ${(animatedWidth).toFixed(2)}`;
+        box.style.width = animatedWidth * 100 + '%';
+      });
+
+    }, false);
+
+  </script>
+</body>
+
+</html>

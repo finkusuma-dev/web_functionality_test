@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animate</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 20px;
+    }
+
+    .fixed {
+      position: fixed;
+      top: 0;
+      padding: 5px;
+      background-color: yellow;
+
+    }
+
+    .text-log {}
+
+    /* .box {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    } */
+
+    .box-1 {
+      width: 100px;
+      height: 600px;
+      background-color: green;
+    }
+
+    .box-2 {
+      width: 100px;
+      height: 300px;
+      background-color: green;
+    }
+
+    .box-animated {
+      width: 100px;
+      height: 100px;
+      background-color: hsl(0, 100%, 90%);
+      transition: 0.5s;
+    }
+
+    .change-width {
+      width: 200px;
+    }
+
+    .width-full {
+      width: 100%;
+    }
+
+    .root-margin {
+      position: fixed;
+      top: 200px;
+      bottom: 200px;
+      left: 0;
+      right: 0;
+      border: 1px solid red;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- Animate with intersection observer. -->
+  <!-- Adding or removing styles based on its position on the screen.  -->
+
+  <div class="fixed">
+    <div class="">Animate with intersection observer. Adding or removing styles based on its position on the screen.
+    </div>
+    <div id="text-log">...</div>
+  </div>
+  <div class="box-1"></div>
+  <!-- <div class="overflow-container"> -->
+
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <div id="box-animated" class="box-animated"></div>
+  <div class="box-2"></div>
+  <!-- </div> -->
+  <div class="root-margin"></div>
+
+  <script defer>
+    const textLog = document.getElementById('text-log');
+    //const animatedBox = document.getElementById('box-animated');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        // console.log('entry', entry);
+        console.log('entry.intersectionRatio', entry.intersectionRatio);
+
+        if (entry.isIntersecting) {
+          console.log('intersecting', entry.target);
+          entry.target.style.width = '100%';
+          // entry.target.classList.add('width-full');
+        } else {
+          console.log('not intersecting', entry.target);
+          entry.target.style.width = '100px';
+        }
+      });
+    }, {
+      rootMargin: "-200px 0px -200px"
+    })
+
+    // const animatedBoxes = document.getElementsByClassName('box-animated');
+    const animatedBoxes = document.querySelectorAll('.box-animated');
+    console.log('animatedBoxes', animatedBoxes);
+    animatedBoxes.forEach(el => {
+      console.log('animated box', el);
+      observer.observe(el);
+    });
+
+  </script>
+</body>
+
+</html>

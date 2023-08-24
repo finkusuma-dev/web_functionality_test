@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Position with JavaScript</title>
+</head>
+
+<body>
+  <div class="a">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga iure rerum et dolorum, autem, quae voluptatem iusto
+    ducimus soluta fugit eaque doloribus. Optio quibusdam eos cum a expedita odio alias.
+    <div class="b">
+      <div class="b1"></div>
+      <div class="b2"></div>
+    </div>
+    <div class="c"></div>
+  </div>
+
+  <script>
+    const bElement = document.querySelector('.b');
+    const b2Element = document.querySelector('.b2');
+
+    window.addEventListener('scroll', () => {
+      const bRect = bElement.getBoundingClientRect();
+      const bRect2 = b2Element.getBoundingClientRect();
+      console.log('bRect', bRect);
+      // console.log('bRect2', bRect2);
+      const scrollTop = window.scrollY || window.pageYOffset;
+      console.log('scrollTop', scrollTop);
+
+      // if (bRect2.y < 0) {
+      //   b2Element.style.position = 'fixed';
+      //   b2Element.style.top = '0';
+      // } else {
+      //   b2Element.style.position = 'static';
+      // }
+      if (scrollTop > 200) {
+        b2Element.style.position = 'fixed';
+        b2Element.style.top = '0';
+        console.log('fixed');
+      } else {
+        b2Element.style.position = 'static';
+        console.log('xxxx -- static')
+      }
+    });
+  </script>
+</body>
+<style>
+  .a {
+    width: 100%;
+    border: 1px solid red;
+  }
+
+  .b {
+    border: 5px solid green;
+  }
+
+  .b1,
+  .b2 {
+    width: 100px;
+    height: 100px;
+  }
+
+  .b1 {
+    background-color: brown;
+  }
+
+  .b2 {
+    background-color: yellow;
+  }
+
+  .c {
+    width: 200px;
+    height: 100vh;
+    background-color: aqua;
+  }
+</style>
+
+</html>
