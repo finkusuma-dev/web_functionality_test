@@ -1,4 +1,4 @@
 # Readme
 
-[Animation](./animations/readme.md)
-[Menu](./menu/)
+- [Animation](./animations/readme.md)
+- [Menu](./menu/)
