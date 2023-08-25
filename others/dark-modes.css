@@ -1,0 +1,34 @@
+:root {
+  --text-color-light: #222;
+  --bkg-color-light: #fff;
+
+  --text-color-dark: #eee;
+  --bkg-color-dark: #121212;
+}
+
+body {
+  --text-color: var(--text-color-light);
+  --bkg-color: var(--bkg-color-light);
+}
+
+body.dark-theme {
+  --text-color: var(--text-color-dark);
+  --bkg-color: var(--bkg-color-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    --text-color: var(--text-color-dark);
+    --bkg-color: var(--bkg-color-dark);
+  }
+
+  body.light-theme {
+    --text-color: var(--text-color-light);
+    --bkg-color: var(--bkg-color-light);
+  }
+}
+
+body {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
