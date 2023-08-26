@@ -6,6 +6,8 @@ const selectThemeEl = document.querySelector('.select-theme');
 
 // Create a media query for detecting dark theme preference
 const mediaDarkTheme = window.matchMedia('(prefers-color-scheme: dark)');
+const mediaPrint = window.matchMedia('print');
+console.log('mediaPrint', mediaPrint);
 
 // Function to return a string indicating the media preference for dark or light theme
 function printMediaDarkTheme() {
@@ -22,9 +24,14 @@ function applyTheme(theme) {
 
   // Remove existing theme classes from the document body
   document.body.classList.remove('light-theme');
+  document.body.classList.remove('theme-variant-light-creme');
   document.body.classList.remove('dark-theme');
+  document.body.classList.remove('theme-variant-dark-dim');
 
   // Check media preference for dark theme and apply the appropriate class
+  const themeVariant = theme.split('/')[1];
+  theme = theme.split('/')[0];
+
   if (mediaDarkTheme.matches) {
     if (theme === 'light') {
       console.log('add light-theme');
@@ -37,6 +44,12 @@ function applyTheme(theme) {
       console.log('add dark-theme');
       document.body.classList.add('dark-theme');
     }
+  }
+
+  if (themeVariant === 'creme') {
+    document.body.classList.add('theme-variant-light-creme');
+  } else if (themeVariant === 'dim') {
+    document.body.classList.add('theme-variant-dark-dim');
   }
 }
 
@@ -61,7 +74,7 @@ selectThemeEl.addEventListener('change', (e) => {
   const theme = e.target.value;
 
   // Store the selected theme in local storage or remove the key if 'default' is selected
-  if (theme === 'light' || theme === 'dark') {
+  if (theme !== 'default') {
     localStorage.setItem(KEY_THEME, theme);
   } else {
     localStorage.removeItem(KEY_THEME);
